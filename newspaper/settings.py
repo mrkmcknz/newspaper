@@ -31,7 +31,11 @@ NLP_STOPWORDS_EN = os.path.join(
 
 DATA_DIRECTORY = '.newspaper_scraper'
 
-TOP_DIRECTORY = os.path.join(os.path.expanduser("~"), DATA_DIRECTORY)
+# Checks if running inside AWS lambda function that only has access /tmp
+if os.environ['AWS_LAMBDA_FUNCTION_NAME']:
+    TOP_DIRECTORY = os.path.join(os.path.expanduser("~"), DATA_DIRECTORY)
+else:
+    TOP_DIRECTORY = os.path.join('/tmp', DATA_DIRECTORY)
 if not os.path.exists(TOP_DIRECTORY):
     os.mkdir(TOP_DIRECTORY)
 
