@@ -35,7 +35,7 @@ if os.environ['AWS_LAMBDA_FUNCTION_NAME']:
 else:
     DATA_DIRECTORY = '.newspaper_scraper'
 
-TOP_DIRECTORY = os.path.join('/tmp', DATA_DIRECTORY)
+TOP_DIRECTORY = os.path.join(os.path.expanduser("~"), DATA_DIRECTORY)
 if not os.path.exists(TOP_DIRECTORY):
     os.mkdir(TOP_DIRECTORY)
 
